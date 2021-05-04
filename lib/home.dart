@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:decetion_object/text_to_speech.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -28,13 +30,11 @@ class _HomePageState extends State<HomePage> {
     TextToSpeech.initTts();
   }
 
-
   loadModel() async {
-    String res;
-    res = await Tflite.loadModel(
-      model: "assets/yolov2_tiny.tflite",
-      labels: "assets/yolov2_tiny.txt",
-    );
+    await Tflite.loadModel(
+        model: "assets/modelint16.tflite",
+        labels: "assets/classes.txt",
+        numThreads: 3);
   }
 
   onSelect(model) {
